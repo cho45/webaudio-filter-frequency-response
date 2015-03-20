@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html
+	ng-app="App"
+	>
+	<head>
+		<title></title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+
+		<link rev="made" href="mailto:cho45@lowreal.net"/>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body ng-controller="MainCtrl">
+		<div class="container">
+			<div class="page-header">
+				<h1>WebAudio BiquadFilter Frequency Response Graph</h1>
+				<p class="lead"></p>
+			</div>
+
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Type</label>
+					<div class="col-sm-10">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								{{ type.type }} <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li ng-repeat="type in types"><a ng-click="setType(type)">{{ type.type }}</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="form-group" ng-show="type.frequency">
+					<label class="col-sm-2 control-label">Frequency</label>
+					<div class="col-sm-10">
+						<input type="number" class="form-control" ng-model="params.frequency"/>
+					</div>
+				</div>
+				<div class="form-group" ng-show="type.Q">
+					<label class="col-sm-2 control-label">Q</label>
+					<div class="col-sm-10">
+						<input type="number" class="form-control" ng-model="params.Q"/>
+					</div>
+				</div>
+				<div class="form-group" ng-show="type.gain">
+					<label class="col-sm-2 control-label">Gain</label>
+					<div class="col-sm-10">
+						<input type="number" class="form-control" ng-model="params.gain"/>
+					</div>
+				</div>
+			</form>
+
+			<canvas id="canvas" style="max-width: 100%"></canvas>
+
+			<div id="footer">
+				<address>2015 <a href="mailto:cho45@lowreal.net">cho45@lowreal.net</a></address>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>
